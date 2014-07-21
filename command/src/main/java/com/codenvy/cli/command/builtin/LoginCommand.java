@@ -22,10 +22,10 @@ import org.apache.karaf.shell.commands.Command;
 import org.apache.karaf.shell.commands.Option;
 import org.fusesource.jansi.Ansi;
 
+import com.codenvy.cli.security.FileBasedCredentialsProvider;
 import com.codenvy.client.Codenvy;
 import com.codenvy.client.CodenvyException;
 import com.codenvy.client.auth.Credentials;
-import com.codenvy.client.auth.Token;
 
 /**
  * Allows to be authenticated on Codenvy
@@ -73,11 +73,15 @@ public class LoginCommand extends AbsCommand {
         }
 
         // Manage credentials
-        Credentials credentials = getCodenvyClient().newCredentialsBuilder().withUsername(username)
+        Credentials credentials = getCodenvyClient().newCredentialsBuilder()
+                                                    .withUsername(username)
                                                     .withPassword(password)
                                                     .build();
 
-        Codenvy codenvy = getCodenvyClient().newCodenvyBuilder(url, username).withCredentials(credentials).build();
+        Codenvy codenvy = getCodenvyClient().newCodenvyBuilder(url, username)
+                                            .withCredentials(credentials)
+                                            .withCredentialsProvider(new FileBasedCredentialsProvider(username + '@' + host))
+                                            .build();
 
         Ansi buffer = Ansi.ansi();
 
@@ -95,7 +99,6 @@ public class LoginCommand extends AbsCommand {
             buffer.a(username);
             buffer.reset();
             // Keep the token object
-            session.put(Token.class.getName(), credentials.token());
             session.put(Codenvy.class.getName(), codenvy);
         } catch (CodenvyException e) {
             buffer.fg(RED);

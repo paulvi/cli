@@ -10,28 +10,25 @@
  *******************************************************************************/
 package com.codenvy.cli.security;
 
-import static org.junit.Assert.assertTrue;
-
-import java.io.File;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import com.codenvy.cli.command.builtin.Constants;
+import com.codenvy.client.auth.Credentials;
+import com.codenvy.client.auth.CredentialsProvider;
 
 /**
  * @author Stéphane Daviet
  */
-public class CachedFileCredentialsStoreFactoryTest {
-    @BeforeClass
-    public static void setup() {
-        System.setProperty("karaf.home", ".");
+public class FileBasedCredentialsProvider implements CredentialsProvider {
+    private final String environmentAlias;
+
+    public FileBasedCredentialsProvider(String environmentAlias) {
+        this.environmentAlias = environmentAlias;
     }
 
-    @Test
-    public void testGetDataStore() {
-        CachedFileCredentialsStoreFactory.getInstance().getDataStore("credentialsStore");
-
-        assertTrue(new File(Constants.CREDENTIAL_STORE_FILE).exists());
+    @Override
+    public Credentials getCredentials(String username) {
+        return CachedFileCredentialsStoreFactory.getInstance()
+                                                .getDataStore(Constants.CREDENTIALS_STORE_KEY)
+                                                .get(environmentAlias);
     }
+
 }

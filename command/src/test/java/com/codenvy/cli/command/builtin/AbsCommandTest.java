@@ -10,6 +10,7 @@
  *******************************************************************************/
 package com.codenvy.cli.command.builtin;
 
+import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
@@ -37,6 +38,7 @@ import com.codenvy.client.UserClient;
 import com.codenvy.client.WorkspaceClient;
 import com.codenvy.client.auth.Credentials;
 import com.codenvy.client.auth.CredentialsBuilder;
+import com.codenvy.client.auth.CredentialsProvider;
 import com.codenvy.client.model.Project;
 import com.codenvy.client.model.User;
 import com.codenvy.client.model.Workspace;
@@ -62,6 +64,9 @@ public abstract class AbsCommandTest {
 
     @Mock
     private Credentials                         credentials;
+
+    @Mock
+    private CredentialsProvider                 credentialsProvider;
 
     @Mock
     private CodenvyBuilder                      codenvyBuilder;
@@ -129,6 +134,7 @@ public abstract class AbsCommandTest {
 
         doReturn(codenvyBuilder).when(getCodenvyClient()).newCodenvyBuilder(anyString(), anyString());
         doReturn(codenvyBuilder).when(codenvyBuilder).withCredentials(credentials);
+        doReturn(codenvyBuilder).when(codenvyBuilder).withCredentialsProvider(any(CredentialsProvider.class));
         doReturn(codenvy).when(codenvyBuilder).build();
 
         // UserClient

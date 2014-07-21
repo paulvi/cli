@@ -43,4 +43,6 @@ public class Constants {
      * Define the <b>username</b> property which is defined in the codenvy configuration file.
      */
     public static final String USERNAME_PROPERTY     = "username";
+
+    public static final String CREDENTIALS_STORE_KEY = "credentialsStore";
 }

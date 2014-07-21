@@ -31,7 +31,6 @@ import com.codenvy.client.auth.Token;
  */
 public class LoginCommandTest extends AbsCommandTest {
 
-
     @Mock
     private Token token;
 
@@ -53,8 +52,7 @@ public class LoginCommandTest extends AbsCommandTest {
 
         String username = "florent";
         String password = "mySecretPassword";
-        CommandInvoker commandInvoker =
-                                        new CommandInvoker(loginCommand).option("-h", DEFAULT_URL)
+        CommandInvoker commandInvoker = new CommandInvoker(loginCommand).option("-h", DEFAULT_URL)
                                                                         .argument("username", username)
                                                                         .argument("password", password);
 
@@ -64,16 +62,11 @@ public class LoginCommandTest extends AbsCommandTest {
         verify(getCredentialsBuilder()).withUsername(username);
         verify(getCredentialsBuilder()).withPassword(password);
 
-
         // check also that credentials have been given
         verify(getCodenvyClient()).newCodenvyBuilder(DEFAULT_URL, username);
         verify(getCodenvyBuilder()).withCredentials(getCredentials());
 
-        // check token is saved
-        verify(getCommandSession()).put(Token.class.getName(), getCredentials().token());
-
         assertTrue(result.disableAnsi().getOutputStream().contains("Login OK : Welcome florent"));
-
     }
 
 
@@ -112,9 +105,6 @@ public class LoginCommandTest extends AbsCommandTest {
         // check token is not saved
         verify(getCommandSession(), times(0)).put(Token.class.getName(), getCredentials().token());
 
-        assertEquals(String.format("Login failed : Unable to perform login : null%n"), result.disableAnsi().getOutputStream());
-
+        assertEquals("Login failed : Unable to perform login : null\n", result.disableAnsi().getOutputStream());
     }
-
-
 }

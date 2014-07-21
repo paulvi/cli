@@ -1,19 +1,13 @@
-/*
- * CODENVY CONFIDENTIAL
- * ________________
+/*******************************************************************************
+ * Copyright (c) 2012-2014 Codenvy, S.A.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- * [2012] - [2014] Codenvy, S.A.
- * All Rights Reserved.
- * NOTICE: All information contained herein is, and remains
- * the property of Codenvy S.A. and its suppliers,
- * if any. The intellectual and technical concepts contained
- * herein are proprietary to Codenvy S.A.
- * and its suppliers and may be covered by U.S. and Foreign Patents,
- * patents in process, and are protected by trade secret or copyright law.
- * Dissemination of this information or reproduction of this material
- * is strictly forbidden unless prior written permission is obtained
- * from Codenvy S.A..
- */
+ * Contributors:
+ *   Codenvy, S.A. - initial API and implementation
+ *******************************************************************************/
 package com.codenvy.cli.security;
 
 import java.io.File;
@@ -30,14 +24,20 @@ import com.codenvy.client.store.DataStoreFactory;
  *
  * @author Stéphane Daviet
  */
-public class CachedFileCredentialsStoreFactory implements DataStoreFactory<String, Credentials> {
+public final class CachedFileCredentialsStoreFactory implements DataStoreFactory<String, Credentials> {
+    private final static CachedFileCredentialsStoreFactory              INSTANCE = new CachedFileCredentialsStoreFactory();
+
     private final ConcurrentMap<String, DataStore<String, Credentials>> dataStores;
 
     /**
      * Basic constructor that initializes an empty {@link DataStore} cache.
      */
-    public CachedFileCredentialsStoreFactory() {
+    private CachedFileCredentialsStoreFactory() {
         this.dataStores = new ConcurrentHashMap<>();
+    }
+
+    public static CachedFileCredentialsStoreFactory getInstance() {
+        return INSTANCE;
     }
 
     /**
@@ -59,4 +59,8 @@ public class CachedFileCredentialsStoreFactory implements DataStoreFactory<Strin
         return store;
     }
 
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        throw new CloneNotSupportedException("Cannot clone singleton.");
+    }
 }
