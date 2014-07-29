@@ -17,45 +17,26 @@ import com.codenvy.client.auth.Credentials;
  * @author Stéphane Daviet
  */
 public final class CredentialsHelper {
-    private static final CredentialsHelper INSTANCE = new CredentialsHelper();
 
     private CodenvyClient                  codenvyClient;
 
-    private CredentialsHelper() {
+    public CredentialsHelper(CodenvyClient codenvyClient) {
+        this.codenvyClient = codenvyClient;
     }
 
-    public static CredentialsHelper getInstance() {
-        return INSTANCE;
+    public EnvironmentCredentials convert(Credentials credentials) {
+        EnvironmentCredentials environmentCredentials = new EnvironmentCredentials();
+        environmentCredentials.setUsername(credentials.username());
+        environmentCredentials.setToken(credentials.token().value());
+        return environmentCredentials;
     }
 
-    public StoredCredentials toStoreCredentials(Credentials credentials) {
-        return new StoredCredentials(credentials.username(), credentials.token().value());
-    }
-
-    public Credentials fromStoreCredentials(StoredCredentials storedCredentials) {
-        return storedCredentials != null ? codenvyClient.newCredentialsBuilder()
-                                                        .withUsername(storedCredentials.getUsername())
-                                                        .withToken(codenvyClient.newTokenBuilder(storedCredentials.getToken())
+    public Credentials convert(EnvironmentCredentials environmentCredentials) {
+        return environmentCredentials != null ? codenvyClient.newCredentialsBuilder()
+                                                        .withUsername(environmentCredentials.getUsername())
+                                                        .withToken(codenvyClient.newTokenBuilder(environmentCredentials.getToken())
                                                                                 .build())
                                                         .build() : null;
     }
 
-    /**
-     * @param codenvyClient the codenvyClient to set
-     */
-    protected void setCodenvyClient(CodenvyClient codenvyClient) {
-        this.codenvyClient = codenvyClient;
-    }
-
-    /**
-     * @return the codenvyClient
-     */
-    protected CodenvyClient getCodenvyClient() {
-        return codenvyClient;
-    }
-
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        throw new CloneNotSupportedException("Cannot clone singleton.");
-    }
 }

@@ -41,7 +41,7 @@ public class FilePreferencesTest {
         File preferencesFile = new File(FilePreferencesTest.class
                                                                     .getResource("perfectPojoMatchPreferences.json")
                                                                     .toURI());
-        FilePreferences filePreferences = new FilePreferences(preferencesFile);
+        FilePreferences filePreferences = new FilePreferences(preferencesFile).setDisableSaveOnChanges();
 
         FakePojo fakePojo = filePreferences.get(USELESS_POJO_KEY, FakePojo.class);
 
@@ -53,7 +53,7 @@ public class FilePreferencesTest {
         File preferencesFile = new File(FilePreferencesTest.class
                                                                     .getResource("morePropertiesThanPojoPreferences.json")
                                                                     .toURI());
-        FilePreferences filePreferences = new FilePreferences(preferencesFile);
+        FilePreferences filePreferences = new FilePreferences(preferencesFile).setDisableSaveOnChanges();
 
         FakePojo fakePojo = filePreferences.get(USELESS_POJO_KEY, FakePojo.class);
 
@@ -65,7 +65,7 @@ public class FilePreferencesTest {
         File preferencesFile = new File(FilePreferencesTest.class
                                                                     .getResource("morePropertiesThanPojoPreferences.json")
                                                                     .toURI());
-        FilePreferences filePreferences = new FilePreferences(preferencesFile);
+        FilePreferences filePreferences = new FilePreferences(preferencesFile).setDisableSaveOnChanges();
 
         FakePojo fakePojo = filePreferences.get(USELESS_POJO_KEY, FakePojo.class);
 
@@ -81,7 +81,7 @@ public class FilePreferencesTest {
         File preferencesFile = new File(FilePreferencesTest.class
                                                                     .getResource("lessPropertiesThanPojoPreferences.json")
                                                                     .toURI());
-        FilePreferences filePreferences = new FilePreferences(preferencesFile);
+        FilePreferences filePreferences = new FilePreferences(preferencesFile).setDisableSaveOnChanges();
         FakePojo fakePojo = filePreferences.get(USELESS_POJO_KEY, FakePojo.class);
         assertThat(FakePojo.getDumbInstance().withName(null)).isEqualToComparingFieldByField(fakePojo);
     }
@@ -91,7 +91,7 @@ public class FilePreferencesTest {
         File preferencesFile = new File(FilePreferencesTest.class
                                                                     .getResource("deeperPerfectPojoMatchPreferences.json")
                                                                     .toURI());
-        FilePreferences filePreferences = new FilePreferences(preferencesFile);
+        FilePreferences filePreferences = new FilePreferences(preferencesFile).setDisableSaveOnChanges();
 
         FakePojo fakePojo = filePreferences.path("intermediateNode")
                                               .get(USELESS_POJO_KEY, FakePojo.class);
@@ -103,7 +103,7 @@ public class FilePreferencesTest {
     public void testPutOneThenGetOther() throws IOException {
         File tempPreferencesFile = File.createTempFile("preferencesTest", ".json");
         tempPreferencesFile.deleteOnExit();
-        FilePreferences filePreferences = new FilePreferences(tempPreferencesFile);
+        FilePreferences filePreferences = new FilePreferences(tempPreferencesFile).setDisableSaveOnChanges();
 
         filePreferences.put(USELESS_POJO_KEY, FakePojo.getDumbInstance());
         OtherPojo otherPojo = filePreferences.get(USELESS_POJO_KEY, OtherPojo.class);
@@ -118,7 +118,7 @@ public class FilePreferencesTest {
         File preferencesFile = new File(FilePreferencesTest.class
                                                                     .getResource("perfectPojoMatchPreferences.json")
                                                                     .toURI());
-        FilePreferences filePreferences = new FilePreferences(preferencesFile);
+        FilePreferences filePreferences = new FilePreferences(preferencesFile).setDisableSaveOnChanges();
 
         filePreferences.merge(USELESS_POJO_KEY, OtherPojo.getInstance().withName(DUMB_POJO_NAME));
         FakePojo fakePojo = filePreferences.get(USELESS_POJO_KEY, FakePojo.class);
@@ -131,7 +131,7 @@ public class FilePreferencesTest {
         File preferencesFile = new File(FilePreferencesTest.class
                                                                     .getResource("perfectPojoMatchPreferences.json")
                                                                     .toURI());
-        FilePreferences filePreferences = new FilePreferences(preferencesFile);
+        FilePreferences filePreferences = new FilePreferences(preferencesFile).setDisableSaveOnChanges();
 
         filePreferences.put(USELESS_POJO_KEY, OtherPojo.getInstance());
         OtherPojo otherPojo = filePreferences.get(USELESS_POJO_KEY, OtherPojo.class);
@@ -156,7 +156,7 @@ public class FilePreferencesTest {
         tempPreferencesFile.deleteOnExit();
 
         Files.copy(preferencesFile.toPath(), new FileOutputStream(tempPreferencesFile));
-        final FilePreferences filePreferences = new FilePreferences(preferencesFile);
+        final FilePreferences filePreferences = new FilePreferences(preferencesFile).setDisableSaveOnChanges();
 
         final CountDownLatch countDownLatch = new CountDownLatch(1);
 
@@ -185,7 +185,7 @@ public class FilePreferencesTest {
         File preferencesFile = new File(FilePreferencesTest.class
                                                                     .getResource("deeperPerfectPojoMatchPreferences.json")
                                                                     .toURI());
-        FilePreferences filePreferences = new FilePreferences(preferencesFile);
+        FilePreferences filePreferences = new FilePreferences(preferencesFile).setDisableSaveOnChanges();
 
         FakePojo fakePojo = filePreferences.path("intermediateNode")
                                               .get(USELESS_POJO_KEY, FakePojo.class);
@@ -207,7 +207,7 @@ public class FilePreferencesTest {
     public void testPutAndGetSimpleType() throws IOException {
         File tempPreferencesFile = File.createTempFile("preferencesTest", ".json");
         tempPreferencesFile.deleteOnExit();
-        FilePreferences filePreferences = new FilePreferences(tempPreferencesFile);
+        FilePreferences filePreferences = new FilePreferences(tempPreferencesFile).setDisableSaveOnChanges();
 
         filePreferences.put("key", 1);
 
@@ -218,7 +218,7 @@ public class FilePreferencesTest {
     public void testPutArrayType() throws IOException {
         File tempPreferencesFile = File.createTempFile("preferencesTest", ".json");
         tempPreferencesFile.deleteOnExit();
-        FilePreferences filePreferences = new FilePreferences(tempPreferencesFile);
+        FilePreferences filePreferences = new FilePreferences(tempPreferencesFile).setDisableSaveOnChanges();
 
         filePreferences.put("key", new String[]{"fake", "dumb", "useless"});
 
@@ -229,7 +229,7 @@ public class FilePreferencesTest {
     public void testPutEnumType() throws IOException {
         File tempPreferencesFile = File.createTempFile("preferencesTest", ".json");
         tempPreferencesFile.deleteOnExit();
-        FilePreferences filePreferences = new FilePreferences(tempPreferencesFile);
+        FilePreferences filePreferences = new FilePreferences(tempPreferencesFile).setDisableSaveOnChanges();
 
         filePreferences.put("key", TimeUnit.DAYS);
 
@@ -240,7 +240,7 @@ public class FilePreferencesTest {
     public void testPutCollectionType() throws IOException {
         File tempPreferencesFile = File.createTempFile("preferencesTest", ".json");
         tempPreferencesFile.deleteOnExit();
-        FilePreferences filePreferences = new FilePreferences(tempPreferencesFile);
+        FilePreferences filePreferences = new FilePreferences(tempPreferencesFile).setDisableSaveOnChanges();
 
         filePreferences.put("key", Arrays.asList(new String[]{"fake", "dumb", "useless"}));
 

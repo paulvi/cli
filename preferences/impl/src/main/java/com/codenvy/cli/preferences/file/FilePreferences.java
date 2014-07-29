@@ -25,7 +25,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
  *
  * @author Stéphane Daviet
  */
-public class FilePreferences implements Preferences {
+public class FilePreferences implements Preferences, LifecycleCallback {
     private JsonPreferences    rootNode;
 
     private final ObjectMapper mapper;
@@ -126,6 +126,7 @@ public class FilePreferences implements Preferences {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        this.rootNode.addCallback(this);
         return this;
     }
 
@@ -137,11 +138,27 @@ public class FilePreferences implements Preferences {
     protected FilePreferences dumpFile() {
         synchronized (preferencesFile) {
             try {
-                mapper.writeValue(preferencesFile, preferencesFile);
+                mapper.writeValue(preferencesFile, rootNode);
                 return this;
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
     }
+
+    @Override
+    public void notify(LifecycleEvent lifecycleEvent) {
+        // we dump the file for each event
+        if (!disableSaveOnChanges) {
+            dumpFile();
+        }
+    }
+
+    private boolean disableSaveOnChanges = false;
+
+    public FilePreferences setDisableSaveOnChanges() {
+        disableSaveOnChanges = true;
+        return this;
+    }
+
 }

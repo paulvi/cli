@@ -11,19 +11,37 @@
 package com.codenvy.cli.security;
 
 /**
- * @author Stéphane Daviet
+ * @author Florent Benoit
  */
-public class StoredCredentials {
-    private String username;
+public class EnvironmentCredentials {
 
-    private String token;
+    String url = "";
+    String password = "";
+    String token = "";
+    String username = "";
 
-    public StoredCredentials() {
-        super();
+    public String getPassword() {
+        return password;
     }
 
-    public StoredCredentials(String username, String token) {
-        this.username = username;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
         this.token = token;
     }
 
@@ -31,17 +49,8 @@ public class StoredCredentials {
         return username;
     }
 
-    public String getToken() {
-        return token;
-    }
-
-    public StoredCredentials withUsername(String username) {
+    public void setUsername(String username) {
         this.username = username;
-        return this;
     }
 
-    public StoredCredentials withToken(String token) {
-        this.token = token;
-        return this;
-    }
 }

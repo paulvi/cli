@@ -33,11 +33,11 @@ public class PreferencesAPI {
      */
     private static List<PreferencesProvider> preferencesProviders = new CopyOnWriteArrayList<>();
 
-    public static void addPreferencesManager(PreferencesProvider preferencesProvider) {
+    public static void addPreferencesProvider(PreferencesProvider preferencesProvider) {
         preferencesProviders.add(preferencesProvider);
     }
 
-    public static void removePreferencesManager(PreferencesProvider preferencesProvider) {
+    public static void removePreferencesProvider(PreferencesProvider preferencesProvider) {
         preferencesProviders.remove(preferencesProvider);
     }
 
@@ -52,14 +52,10 @@ public class PreferencesAPI {
                     ServiceLoader.load(PreferencesProvider.class, Thread.currentThread().getContextClassLoader());
 
             Iterator<PreferencesProvider> iterator = preferencesServiceLoader.iterator();
-            if (iterator.hasNext()) {
-                throw new IllegalStateException("Unable to find an implementation of '" + PreferencesProvider.class.getName() +
-                                                "'. Check Implementation bundle is available on the platform or that implementation jar contains META-INF/services/src/main/resources/META-INF/services/com.codenvy.cli.preferences.PreferencesManager key.");
-            }
 
             // take all
             while (iterator.hasNext()) {
-                addPreferencesManager(iterator.next());
+                addPreferencesProvider(iterator.next());
             }
 
             // Init done
@@ -71,6 +67,11 @@ public class PreferencesAPI {
             if (prefs != null) {
                 return prefs;
             }
+        }
+
+        if (preferencesProviders.isEmpty()) {
+            throw new IllegalStateException("Unable to find an implementation of '" + PreferencesProvider.class.getName() +
+                                            "'. Check Implementation bundle is available on the platform or that implementation jar contains META-INF/services/src/main/resources/META-INF/services/com.codenvy.cli.preferences.PreferencesManager key.");
         }
 
         return null;
