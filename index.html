@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Codenvy CLI - Quick Start</title>
+
+    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/codenvy.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#page-top"><img height="20" src="img/logo2.png">&nbsp;Codenvy CLI</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#quickstart">Quick start</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#commands">Commands</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#download">Download</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#about">About</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+<pre style="font-family:Courier New;font-size:10pt;">
+<span style="font-weight:bold;color:#000000;">            _</span>
+<span style="font-weight:bold;color:#000000;">            | |</span>
+<span style="color:#00f0f0;">         _         </span><span style="font-weight:bold;color:#000000;">  ___ ___   __</span><span style="font-weight:bold;color:#000000;">| | ___ _ ____   ___   _</span>
+<span style="color:#f0f0f0;"> {</span>    <span style="color:#00f0f0;">('   )</span><span style="color:#f0f0f0;">    }  </span><span style="font-weight:bold;color:#000000;"> / __/ _ \ / _` |/ _ \ '_ \ \ / / | | |</span>
+<span style="color:#f0f0f0;">{{</span>  <span style="color:#00f0f0;">('       )</span><span style="color:#f0f0f0;">  }} </span><span style="font-weight:bold;color:#000000;">| (_| (_) | (_| |  __/ | | \ V /| |_| |</span>
+<span style="color:#f0f0f0;"> {</span> <span style="color:#00f0f0;">(__,__,__,_)</span><span style="color:#f0f0f0;"> }  </span><span style="font-weight:bold;color:#000000;"> \___\___/ \__,_|\___|_| |_|\_/  \__, |</span>
+<span style="font-weight:bold;color:#000000;">                                                     __/ |</span>
+<span style="font-weight:bold;color:#000000;">                                                    |___/</span>
+</pre>
+
+                    <img class="img-cli" src="img/cli.gif" alt="CLI">
+                    <div class="intro-text">
+                        <span class="name">Codenvy CLI</span>
+                        <span class="skills">Remote list, build, run, push and pull</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+<!-- Fork -->
+<a href="https://github.com/codenvy/cli/tree/v2"><img style="position: absolute; top: 0; right: 0; border: 0; z-index: 3000;" src="img/forkme.png" alt="Fork me on GitHub"></a>
+
+
+
+    <!-- Quickstart Section -->
+    <section class="quickstart" id="quickstart">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>Quickstart</h2>
+            </div>
+          </div>
+</div>
+</section>
+
+<div class="container quickstart">
+    <div class="row">
+            <div>
+<h3>YOUR FIRST CODENVY PROJECT</h3>
+
+<h4>There are two ways to get started with Codenvy:</h4>
+
+<p>
+Sync your existing remote Codenvy projects to your local environment, or:<br>
+Create a new developer environment locally, and send it to Codenvy.  After sending it to Codenvy, you can sync it back to your local directory.
+</p>
+<p>
+Once a project is loaded within Codenvy’s servers, it can be modified, cloned, shared, restricted, and scaled.
+</p>
+<p>
+Let’s have some fun.
+</p>
+
+<h4>VIEW, BUILD, RUN PROJECTS</h4>
+<p>
+Create a directory for a project and login to Codenvy.
+</p>
+<pre>
+$ mkdir cdec
+$ cd cdec
+$ codenvy login tyler@codenvy.com my_password
+</pre>
+<p>
+This will create an active session between you and a remote Codenvy cloud.  By default, the CLI connects to the remote hosted at codenvy.com.  Codenvy can be installed on premises or in multiple public clouds.  You can use the ‘codenvy remote’ command to see the list of remotes or configure additional ones.  The ‘login --remote’ option can be used to access different systems simultaneously.
+</p>
+<p>
+Present a list of the projects that you have membership rights to.
+</p>
+<pre>
+$ codenvy list
+</pre>
+
+<div class="console-output">
+<pre>
+ID       REMOTE   WORKSPACE  PROJECT        BUILDERS  RUNNERS
+p23ea3f  default  florent    java-console   none      none
+pdc3dac  default  florent    maven-example  none      none
+p1fdcfa  default  florent    seed           none      none
+p133aff  default  florent    yo             none      none
+</pre>
+</div>
+
+<p>
+If this is your first time using Codenvy, you are a member of a single workspace that belongs to your account.  You can also be a member of other workspaces if the administrators of those workspaces invite you.  Let’s get some historical details on this project.  Each project has a unique hash identifier that can be used as a reference in other commands.
+</p>
+<pre>
+$ codenvy info p23ea3f
+</pre>
+
+<div class="console-output">
+<pre>
+<span style="font-weight:bold;color:#000000;">ID</span><span style="color:#000000;">        p23ea3f
+</span><span style="font-weight:bold;color:#000000;">WORKSPACE</span><span style="color:#000000;"> florent
+</span><span style="font-weight:bold;color:#000000;">PROJECT</span><span style="color:#000000;">   java-console
+</span><span style="font-weight:bold;color:#000000;">IDE URL</span><span style="color:#000000;">   http://ide3.cf.codenvy-stg.com/ide/florent/java-console
+</span><span style="font-weight:bold;color:#000000;">RUNNERS</span><span style="color:#000000;">   none
+</span><span style="font-weight:bold;color:#000000;">BUILDERS</span><span style="color:#000000;">  none
+
+</span>
+</pre>
+</div>
+
+<p>
+You can either input the entire code, or just the initial three letters (as a shortcut).
+</p>
+<pre>
+$ codenvy info p23
+</pre>
+<div class="console-output">
+<pre>
+<span style="font-weight:bold;color:#000000;">ID</span><span style="color:#000000;">        p23ea3f
+</span><span style="font-weight:bold;color:#000000;">WORKSPACE</span><span style="color:#000000;"> florent
+</span><span style="font-weight:bold;color:#000000;">PROJECT</span><span style="color:#000000;">   java-console
+</span><span style="font-weight:bold;color:#000000;">IDE URL</span><span style="color:#000000;">   http://ide3.cf.codenvy-stg.com/ide/florent/java-console
+</span><span style="font-weight:bold;color:#000000;">RUNNERS</span><span style="color:#000000;">   none
+</span><span style="font-weight:bold;color:#000000;">BUILDERS</span><span style="color:#000000;">  none
+</span>
+</pre>
+</div>
+
+<p>
+This project is hosted in a developer environment that is hosted at Codenvy.  Within this environment is the project, trype structure, code, builder (for dependency analysis, compiling, unit tests, and packaging), runner (for executing the application and debugging), and plugins, such as the SCM client like subversion.  The CLI can interact with the remote developer environment:
+</p>
+<pre>
+$ codenvy build p23
+</pre>
+<div class="console-output">
+<pre style="font-family:Courier New;font-size:10pt;">Build task for project <span style="font-weight:bold;color:#000000;">java-console</span><span style="color:#000000;">' has been submitted with builder ID </span><span style="font-weight:bold;color:#000000;">b52686a</span><span style="color:#000000;">
+
+</span><span style="font-weight:bold;color:#000000;">ID</span><span style="color:#000000;">        b52686a
+</span><span style="font-weight:bold;color:#000000;">WORKSPACE</span><span style="color:#000000;"> florent
+</span><span style="font-weight:bold;color:#000000;">PROJECT</span><span style="color:#000000;">   java-console
+</span><span style="font-weight:bold;color:#000000;">ARTIFACT</span><span style="color:#000000;">  N/A
+</span><span style="font-weight:bold;color:#000000;">STATUS</span><span style="color:#000000;">    IN_QUEUE
+
+</span></pre>
+</div>
+<p>
+This places a request at the remote to build project referenced by hash p23.  Your request is queued at Codency and processed with the first available elf (slave).
+</p>
+<pre>
+$ codenvy build p23
+$ codenvy logs b52
+</pre>
+
+<div class="console-output">
+<pre>
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] Building hello-app 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO]
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ desktop-console-java ---
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ desktop-console-java ---
+...
+...
+...
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 3.164s
+[INFO] Finished at: Sun Aug 03 09:06:10 UTC 2014
+[INFO] Final Memory: 16M/161M
+[INFO] ------------------------------------------------------------------------
+</pre>
+</div>
+
+<p>
+The CLI is defaulted to execute in the foreground, but can be sent to the background using ‘codenvy build -bg’.   Sending commands to the background can be beneficial since you can launch multiple builder and runner processes simultaneously.  If you have executed a process in the background, the ‘codenvy logs’ command retrieves the output of the process.
+</p>
+<p>
+Let’s execute your application in a remote Codenvy runner.
+</p>
+<pre>
+codenvy run p23
+codenvy list
+codenvy info b52
+</pre>
+
+<p>
+In this case, when you do a run, Codenvy creates a runner which is another process.  This new process can be short- or long-lived depending upon how your account is configured.  Each runner gets its own runner ID, and it is possible for you to launch as many runners as you desire as long as your account’s RAM has not exceeded its quota.  You can use the ‘codenvy info’ command with project, builder or runner IDs.  If you need to stop your application, you can use the runner ID as a parameter.  Let’s stop the runner that we started, run a new one, and then launch the browser to visit the application’s user interface.
+</p>
+<pre>
+$ codenvy stop p23
+$ codenvy run
+$ codenvy open r34
+</pre>
+
+<h4>SYNCHRONIZE CODENVY PROJECTS FOR OFFLINE USE</h4>
+<p>
+Pull a copy of the project from Codenvy.
+</p>
+<pre>
+codenvy pull p23
+</pre>
+<div class="console-output">
+<pre>
+Pulling project java-console into /Users/benoitf/clone/java-console
+Pulling...done !
+</pre>
+</div>
+
+<p>
+Now, open your favorite IDE, make an edit and perform any kind of local build or run.  Save your changes.  You can make these changes whether you are online or offline.
+</p>
+<pre>
+$ codenvy push
+</pre>
+<p>
+This will push your changes back to Codenvy.  Codenvy supports a last-write wins policy. This allows for a direct push / pull connection to Codenvy.  For projects where there are multiple users accessing the same project, you can also use your source code repository with a hosted provider like BitBucket or GitHub.  From within Codenvy, you can have your project be mapped to a local clone of a remote respository, and then use the clone within the remote Codenvy environment or on your local machine.  We are working on an operational transforms system that will allow your local directory to act as a direct sync point with the remote environment, so that as changes are made locally, they are instantly pushed back into the remote space.  This will ship later in 2014.
+</p>
+<p>
+Now, let’s open up Codenvy to see the changes made on the remote project.
+</p>
+<pre>
+$ codenvy open p23
+</pre>
+<div class="console-output">
+<pre>
+URL 'http://ide3.cf.codenvy-stg.com/ide/florent/java-console' has been opened in the web browser
+</pre>
+</div>
+<p>
+Codenvy also comes with a browser IDE of its own that gives you a full range of developer functions right in your browser.  This command opens the environment instantly without you having to install or download any software.
+</p>
+
+<h4>INITIALIZE A LOCAL PROJECT AND PUSH TO CODENVY</h4>
+<p>There are two ways to create a project that is pushed to Codenvy.  You can create your project files locally and then push them to Codenvy where a new project is created.  Or, you can create a Codenvy configuration file, ‘project.json’ which describes a developer environment, and create a new Codenvy project remotely form that configuration file.
+</p>
+<p>
+Let’s start by creating a project from local files that we touch.  Create a new directory for a project, and create some source files for your project.
+</p>
+<pre>
+ $ mkdir local_project
+ $ cd local_project
+ $ touch some_files
+</pre>
+<p>
+Create a remote project that will contain your local files.  The [create_project] command will look locally for a .\codenvy\project.json configuration file with instructions on how to create the project remotely.  If a configuration file does not exist, it will create a blank project type at Codenvy.  We’ll push our local files into the new project, check the status, and then pull them back down to create a local synchronization point (also pulling in the full Codenvy configuration file).
+</p>
+</div>
+</div>
+</div>
+
+
+<!-- Quickstart Section -->
+<section class="commands" id="commands">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <h2>Commands</h2>
+        </div>
+        <div>
+
+<h4><span class="glyphicon glyphicon-cog">&nbsp;</span>build</h4>
+<pre>
+codenvy build &lt;project-id&gt;
+</pre>
+<p>
+Build a project
+</p>
+
+<h4><span class="glyphicon glyphicon-info-sign">&nbsp;</span>info</h4>
+<pre>
+codenvy info &lt;project-id&gt;
+codenvy info &lt;runner-id&gt;
+codenvy info &lt;builder-id&gt;
+</pre>
+<p>
+Display information for a project, runner, or builder
+</p>
+
+<h4><span class="glyphicon glyphicon-list">&nbsp;</span>list</h4>
+<pre>
+codenvy list
+</pre>
+<p>
+ List workspaces, projects and processes
+</p>
+
+<h4><span class="glyphicon glyphicon-user">&nbsp;</span>login</h4>
+<pre>
+codenvy login &lt;user&gt; &lt;pass&gt;
+</pre>
+<p>
+  Login to a remote Codenvy cloud
+</p>
+
+<h4><span class="glyphicon glyphicon-book">&nbsp;</span>logs</h4>
+<pre>
+codenvy logs &lt;builder-id&gt;
+codenvy stop &lt;runner-id&gt;
+</pre>
+<p>
+Display output logs for a runner or builder
+</p>
+
+<h4><span class="glyphicon glyphicon-cloud-download">&nbsp;</span>pull</h4>
+<pre>
+codenvy pull [project-id] [directory]
+</pre>
+<p>
+  Pull a project
+</p>
+<h4><span class="glyphicon glyphicon-cloud-upload">&nbsp;</span>push</h4>
+<pre>
+codenvy push [directory]
+</pre>
+<p>
+  Push a project
+</p>
+
+<h4><span class="glyphicon glyphicon-home">&nbsp;</span>remote</h4>
+<pre>
+codenvy remote add &lt;remote-name&gt; &lt;url&gt;
+codenvy remove &lt;remote-name&gt;
+</pre>
+<p>
+  Adds or removes a Codenvy cloud configuration to your CLI storage.  This can referenced in other calls.  You can have multiple Codenvy cloud installations configured.
+</p>
+
+
+<h4><span class="glyphicon glyphicon-play">&nbsp;</span>run</h4>
+<pre>
+codenvy run &lt;project-id&gt;
+</pre>
+<p>
+Run a project
+</p>
+
+<h4><span class="glyphicon glyphicon-stop">&nbsp;</span>stop</h4>
+<pre>
+codenvy stop &lt;project-id&gt;
+codenvy stop &lt;runner-id&gt;
+</pre>
+<p>
+Stop one or more runner processes
+</p>
+
+
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download">
+        <div class="container">
+<div class="row">
+    <div class="col-lg-12 text-center">
+        <h2>Download</h2>
+    </div>
+
+    <div class="col-lg-12 text-center">
+      <p></p>
+      <p>
+        Codenvy CLI assembly is available in tar or zip format.
+      </p>
+      <p>
+        <a class="btn btn-lg btn-primary" href="http://maven.codenvycorp.com/content/groups/public/com/codenvy/cli/cli-assembly/2.0.0-M1-SNAPSHOT/cli-assembly-2.0.0-M1-20140802.072253-47.zip">Download zip</a>
+        <a class="btn btn-lg btn-primary" href="http://maven.codenvycorp.com/content/groups/public/com/codenvy/cli/cli-assembly/2.0.0-M1-SNAPSHOT/cli-assembly-2.0.0-M1-20140802.072253-47.tar.gz">Download tgz</a>
+
+      </p>
+
+
+    </div>
+</div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="success" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>About</h2>
+                </div>
+            </div>
+            <div class="row">
+                Codenvy is the “Develop Instantly” company. Our continuous development cloud improves velocity and control by making developer environments instant, extensible, and controllable. Based on an extensible plug-in platform, our SaaS developer environments include Codenvy Developer, Codenvy Enterprise, Codenvy ISV, and Codenvy Affiliate. By integrating with traditional IDEs, ALM, frameworks, libraries, databases, code repositories, CI, and PAAS/IAAS, Codenvy works with your processes and requires no changes to get started. This simplicity of development is why Google, Atlassian, Intuit and Accenture use Codenvy today.
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <!--<div class="footer-above">
+        </div>
+      -->
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        Copyright &copy; Codenvy 2014
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll visible-xs visble-sm">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+
+    <!-- jQuery Version 1.11.0 -->
+    <script src="js/jquery-1.11.0.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="js/classie.js"></script>
+    <!--<script src="js/cbpAnimatedHeader.js"></script>-->
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/freelancer.js"></script>
+
+</body>
+
+</html>
